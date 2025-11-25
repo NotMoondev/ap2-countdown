@@ -1,6 +1,8 @@
 # AP2 Countdown & Stimmungsbarometer
 
-> Weil man manchmal nicht nur wissen will, **wann** die AP2 kommt, sondern auch **wie sehr jeder gerade innerlich leidet**.  
+> Weil man manchmal nicht nur wissen will, **wann** die AP2 kommt, sondern auch **wie sehr jeder gerade innerlich leidet**.
+
+**Der Countdown läuft bei https://notmoondev.github.io/ap2-countdown/**
 
 ## Features
 
