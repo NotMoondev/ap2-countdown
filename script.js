@@ -116,34 +116,58 @@ if (hasVoted) {
     })
 }
 
+function getMoodLabel(score) {
+    if (score === 0) return "Keine Stimmen";
+    if (score < 2) return "Totally fucked";
+    if (score < 4) return "Geht so";
+    if (score < 6) return "Neutral";
+    if (score < 8) return "Gut";
+    return "WE GONNA ACE IT";
+}
+
 function loadResults() {
     votesRef.once('value', snapshot => {
         const data = snapshot.val()
+        const container = document.getElementById('resultsContent')
+        container.innerHTML = ''
+
         if (!data) {
-            document.getElementById('resultsContent').textContent = 'Noch keine Stimmen.'
+            container.textContent = 'Noch keine Stimmen.'
             return
         }
 
         let totals = { FISI: 0, FIAE: 0, FIDV: 0, FIDP: 0 }
         let counts = { FISI: 0, FIAE: 0, FIDV: 0, FIDP: 0 }
+        let totalVotes = 0
 
         for (let id in data) {
             const vote = data[id]
             if (totals.hasOwnProperty(vote.beruf)) {
                 totals[vote.beruf] += Number(vote.gefühl)
                 counts[vote.beruf]++
+                totalVotes++
             } else {
                 console.warn("Ungültiger Beruf:", vote.beruf)
             }
         }
 
+        const totalDiv = document.createElement('div')
+        totalDiv.classList.add('total-votes')
+        totalDiv.textContent = `Insgesamt abgegebene Stimmen: ${totalVotes}`
+        container.appendChild(totalDiv)
 
-        let resultText = ''
         for (let b in totals) {
             const avg = counts[b] ? (totals[b] / counts[b]).toFixed(1) : 0
-            resultText += `${b}: ${avg}/10 (${counts[b]} Stimmen)<br>`
-        }
+            const barWidth = (avg / 10) * 100
 
-        document.getElementById('resultsContent').innerHTML = resultText
+            const div = document.createElement('div')
+            div.classList.add('result-item')
+            div.innerHTML = `
+                <div class="label">${b} - ${getMoodLabel(avg)}</div>
+                <div class="value">${avg}/10 (${counts[b]} Stimmen)</div>
+                <div class="bar" style="width:${barWidth}%"></div>
+            `
+            container.appendChild(div)
+        }
     })
 }
