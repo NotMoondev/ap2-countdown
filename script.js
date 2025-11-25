@@ -38,14 +38,14 @@
     const timer = setInterval(update, 1000)
 })()
 
-
 const firebaseConfig = {
-    authDomain: "ap2-counter.firebaseapp.com",
-    databaseURL: "https://ap2-counter-default-rtdb.europe-west1.firebasedatabase.app",
-    projectId: "ap2-counter",
-    storageBucket: "ap2-counter.firebasestorage.app",
-    messagingSenderId: "81773484806",
-    appId: "1:81773484806:web:3480f0e18dae1a2251dc87"
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+    databaseURL: import.meta.env.VITE_FIREBASE_DB_URL,
+    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_FIREBASE_APP_ID
 }
 
 firebase.initializeApp(firebaseConfig)
