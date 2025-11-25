@@ -31,13 +31,58 @@
             </div>
         </section>
 
-        <p class="target">Die Prüfung ist am: <time datetime="2025-11-26T08:00:00+01:00">26.11.2025 08:00 (Europe/Berlin)</time>
+
+        <p class="target">Die Prüfung ist am: <time datetime="2025-11-26T08:00:00+01:00">26.11.2025 08:00
+                (Europe/Berlin)</time>
         </p>
 
         <footer class="footer">Viel Erfolg bei der AP2!</footer>
+
+        <section class="vote-section">
+            <h2>Wie fühlst du dich wegen der AP2?</h2>
+
+            <div class="vote-buttons">
+                <button id="showVote">Abstimmen</button>
+                <button id="showResults">Ergebnisse</button>
+            </div>
+
+            <div class="vote-box" style="display:none;">
+                <label for="beruf">Fachrichtung:</label>
+                <select id="beruf">
+                    <option value="FISI">FISI</option>
+                    <option value="FIAE">FIAE</option>
+                    <option value="FIDV">FIDV</option>
+                    <option value="FIDP">FIDP</option>
+                </select>
+
+                <label>Dein Gefühl:</label>
+                <div class="range-wrapper">
+                    <img src="assets/frown.svg" alt="Trauriges Gesicht" width="24" height="24">
+                    <input type="range" id="gefühl" min="0" max="10" value="5">
+                    <img src="assets/laugh.svg" alt="Lachendes Gesicht" width="24" height="24">
+                </div>
+                <div class="score-wrapper">
+                    <span id="score">5</span>/10
+                </div>
+
+                <button id="send">Absenden</button>
+                <p id="status"></p>
+            </div>
+
+            <div class="results-box" style="display:none;">
+                <div id="resultsContent">Lade Ergebnisse...</div>
+            </div>
+        </section>
+
+        <section class="results-box" style="display:none;">
+            <h2>Ergebnisse</h2>
+            <div id="resultsContent">Lade Ergebnisse...</div>
+        </section>
     </main>
 
     <script src="script.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 </body>
 
 </html>
