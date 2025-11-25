@@ -67,18 +67,26 @@ let showVote = false
 let showResults = false
 
 showVoteBtn.addEventListener('click', () => {
-    showVote = true
-    showResults = false
-    voteBox.style.display = 'block'
-    resultsBox.style.display = 'none'
+    if (voteBox.style.display === 'block') {
+        voteBox.style.display = 'none'
+    } else {
+        showVote = true
+        showResults = false
+        voteBox.style.display = 'block'
+        resultsBox.style.display = 'none'
+    }
 })
 
 showResultsBtn.addEventListener('click', () => {
-    showResults = true
-    showVote = false
-    resultsBox.style.display = 'block'
-    voteBox.style.display = 'none'
-    loadResults()
+    if (resultsBox.style.display === 'block') {
+        resultsBox.style.display = 'none'
+    } else {
+        showResults = true
+        showVote = false
+        resultsBox.style.display = 'block'
+        voteBox.style.display = 'none'
+        loadResults()
+    }
 })
 
 const slider = document.getElementById("gefühl")
@@ -91,7 +99,7 @@ if (hasVoted) {
 } else {
     sendButton.addEventListener("click", () => {
         const beruf = berufSelect.value
-        const gefühl = slider.value
+        const gefühl = Number(slider.value)
 
         votesRef.push({
             beruf: beruf,
