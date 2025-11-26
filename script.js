@@ -118,11 +118,11 @@ if (hasVoted) {
 
 function getMoodLabel(score) {
     if (score === 0) return "Keine Stimmen"
-    if (score < 2) return "Totally fucked"
+    if (score < 2) return "Fuck."
     if (score < 4) return "Geht so"
     if (score < 6) return "Neutral"
     if (score < 8) return "Gut"
-    return "WE GONNA ACE IT"
+    return "Perfekt"
 }
 
 function loadResults() {
