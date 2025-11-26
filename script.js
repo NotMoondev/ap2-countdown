@@ -1,4 +1,4 @@
-(function () {
+function Timer() {
     const targetStr = '2025-11-26T08:00:00+01:00'
     const targetDate = new Date(targetStr)
 
@@ -36,7 +36,7 @@
 
     update()
     const timer = setInterval(update, 1000)
-})()
+}
 
 const firebaseConfig = {
     apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
