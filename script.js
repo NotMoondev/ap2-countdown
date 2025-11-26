@@ -93,9 +93,18 @@ const slider = document.getElementById("gefühl")
 const score = document.getElementById("score")
 slider.addEventListener("input", () => { score.textContent = slider.value })
 
-if (hasVoted) {
+const hadVoted = localStorage.getItem('hasVoted') === 'true'
+const sentFeedback = localStorage.getItem('sentFeedback') === 'true'
+
+if (hadVoted) {
+    localStorage.removeItem('hasVoted')
+    sendButton.disabled = false
+    statusText.textContent = ""
+}
+
+if (sentFeedback) {
     sendButton.disabled = true
-    statusText.textContent = "Du hast bereits abgestimmt!"
+    statusText.textContent = "Danke für dein Feedback!"
 } else {
     sendButton.addEventListener("click", () => {
         const beruf = berufSelect.value
@@ -106,7 +115,7 @@ if (hasVoted) {
             gefühl: gefühl,
             timestamp: Date.now()
         }).then(() => {
-            localStorage.setItem('ap2_voted', 'true')
+            localStorage.setItem('sentFeedback', 'true')
             sendButton.disabled = true
             statusText.textContent = "Danke für deine Stimme!"
         }).catch(err => {
